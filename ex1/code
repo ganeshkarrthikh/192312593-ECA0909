@@ -1,4 +1,3 @@
- code : 
 clc;
 clear;
 Fs=10000; Fp=1000; Fst=1500;
