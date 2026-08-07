@@ -1,0 +1,16 @@
+clc; clear;
+Wp=0.4; Ws=0.55; Rp=1; As=40;
+[N,Wn]=cheb1ord(Wp,Ws,Rp,As);
+[b,a]=cheby1(N,Rp,Wn);
+fprintf('Filter Order = %d\n',N);
+fprintf('Cutoff Frequency = %.2f * pi rad/sample\n',Wn);
+if all(abs(roots(a))<1)
+    disp('System is STABLE');
+else
+    disp('System is UNSTABLE');
+end
+% -------- GRAPHS --------
+figure; freqz(b,a); % Magnitude + Phase
+figure; impz(b,a); % Impulse Response
+figure; grpdelay(b,a); % Group Delay
+figure; zplane(b,a); % Pole-Zero
